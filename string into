@@ -1,0 +1,14 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class ConvertIntToString
+{
+    public static void main (String[] args)
+    throws java.lang.Exception
+    {
+        // your code goes here
+        int number = -782;
+        String numberAsString = Integer.toString(number);
+        System.out.println(numberAsString);
+    }
+}
