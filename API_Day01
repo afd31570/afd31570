@@ -1,0 +1,432 @@
+Layers of applications:
+
+
+User Interface
+API: Application programming interface
+Database
+
+
+Amazon.com Banks Bank ofAmerica
+Chase bank
+PNC bank
+
+
+JSON format
+{
+
+"request": {
+
+"firstname" : "ibrahim",
+"lastname " : "instructor";
+"id" : 1001
+
+}
+
+}
+
+Java
+
+String firstname = "";
+String lastname = "";
+int id = ;
+
+APEX
+String firstname = '';
+String lastname = '';
+int id = ;
+
+XML
+
+<firstname> ibrahim<firstname>
+<lastname> instructor<lastname>
+
+
+
+
+
+API can use JSON object, XML object, TEXT, javascript
+
+JSON and XML
+
+
+
+Rest API and Soap API
+can use JSON XML
+XML, TEXT, Javascript
+
+faster slower
+is secure is sercurer
+
+
+
+
+Authentication vs Authorization in API
+
+
+
+Hospital project
+
+patient
+Doctor
+staff
+Admin
+
+
+patient
+name = 'Tom';
+lastname= 'Richard';
+id = 101;
+
+
+admin
+
+
+patient
+name = 'Warren';
+lastname= 'Case';
+id = 100043203;
+
+
+
+
+
+
+
+
+Layers of applications? UI, API, DB
+
+API types? Rest API vs Soap API
+
+API formats? JSON, XML, TEXT, Javascript
+
+Authentication general access? (true )
+
+Authorization specific access? (true)
+
+
+
+API works with REQUEST and RESPONSE
+
+
+Requests:
+
+GET : we can read data / data read request
+POST : we can create data
+PUT: we can update records fully
+PATCH: we can also make partial update
+DELETE: we can also delete data
+
+
+
+
+
+
+
+
+
+
+
+API types: Rest and Soap
+
+API formats: JSON, XML ..
+
+API communicates with Request and Response
+
+
+API can request; Get, Post, Put, Patch and Delete
+
+
+Status Codes:
+
+1XX: Your request communication has started
+2XX: Your request has been accepted succesfully
+3XX: Your request is Okay, but you need addinitional information / not completed yet
+4XX: There is something wrong about the request
+5XX: There is a server related problem
+
+
+200 : Okay.
+201 : Created
+202: accepted
+204 : No content
+
+400: Bad request(sysntax error ..)
+401: Unauthorized
+404: Not Found
+
+
+500: server related
+
+
+
+
+
+
+
+
+
+
+
+url:
+
+https://medunna.com
+
+
+https://medunna.com/api/patients
+
+
+https://medunna.com/api/users
+
+
+https://medunna.com/api/appointments
+
+
+https://medunna.com/api/data/messages
+
+
+
+https://medunna.com => base url
+
+/api/appointments => path parameter
+
+
+/api/data/messages => 3 path parameters
+
+
+/api/appointments?name=ibrahim&lastname=... => 2 query parameters
+
+
+
+
+
+
+
+{
+"users": [{
+
+"firstname" : "Fevzi",
+"lastname" : "Kipici",
+id : 101
+
+},
+
+{
+
+"firstname" : "Mehmet",
+"lastname" : "Kaynak",
+id : 102
+
+},
+
+{
+
+"firstname" : "Salih",
+"lastname" : "Hafiy",
+id : 103
+
+}
+
+
+]
+}
+
+
+
+
+
+
+
+https://batchdeveloper.com/api/developers/users
+
+base url: https://batchdeveloper.com
+
+path params: /api/developers/users
+
+3
+
+firstname {Fevzi, Mehmet, Salih}
+
+
+
+https://batchdeveloper.com/api/developers/users?firstname=Mehmet
+
+
+
+
+{
+
+"firstname" : "Mehmet",
+"lastname" : "Kaynak",
+id : 102
+
+}
+
+https://batchdeveloper.com/api/developers/users?id=101&firstname=Fevzi
+
+
+
+{
+
+"firstname" : "Fevzi",
+"lastname" : "Kipici",
+id : 101
+
+}
+
+
+
+
+
+
+
+https://batchdeveloper.com/api/developers/users?id=101
+
+404
+
+
+
+
+https://batchdeveloper.com/api/developers/users => this gives more general data
+
+
+https://batchdeveloper.com/api/developers/users?id=101 => this gives more specific data
+
+Path param: for general data
+Query param : for specific data
+
+URL / Endpoint
+
+https://batchdeveloper.com/api/developers/users?id=101
+
+
+
+
+https://bestdevelopers.com/techpro/8889/NT/2022Spring/users
+
+https://bestdevelopers.com/techpro/8889/NT/2022Spring/admins
+
+https://bestdevelopers.com/techpro/8889/NT/2022Spring/employees
+
+
+
+{
+"users": {
+
+"name" : "Cem",
+id: 101
+
+
+}
+
+
+}
+
+{
+"admins": {
+
+"name" : "Fevzi",
+id: 102,
+"userType" : "ADMIN_ROLE"
+
+
+
+}
+
+
+}
+
+
+
+{
+"epmloyees": {
+
+"name" : "Hasan",
+"id": 102,
+"salary" : 115.000,
+"epmloyeeType" : "INSTRUCTOR",
+"isWorking" : true
+
+
+
+}
+
+
+}
+
+Get:
+200
+
+POST:
+201
+
+DELETE:
+204
+
+
+
+
+Swagger document
+
+
+
+
+users
+admins
+employees
+
+
+
+
+
+What is API?
+Application programming interface
+Bridge between applications
+Translator
+Waiter
+Middle man
+
+
+
+
+What types of APIs we have?
+Rest vs Soap API
+JSON, XML.. XML
+faster slower
+secure securer
+
+
+
+
+API works with Requests and Responses
+
+
+API can request; Get, Post, Put, Patch, Delete
+
+
+API can inform client with Status Codes
+
+200:Ok
+201:Created
+202: accepted
+204: No content
+
+400: Bad request
+401: Unauthorized
+404: Not Found
+
+
+API document: Swagger document
+
+base url:
+path params
+base url + path param => endpoint
+base url + path param + query param => endpoint
+
+
+Authentication vs Authorization?
+general vs specific acces
+
+
+
+who creates API endpoints and their documents?
+Developer
