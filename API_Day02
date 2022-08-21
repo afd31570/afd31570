@@ -1,0 +1,93 @@
+
+            Batch 88-89
+            API Session
+            API : Application programming interface
+            What type of APIs do we have?
+            Rest     vs    Soap
+            faster         slower
+            JSON, XML..    XML
+            secure         securer
+            API works with Request and Response
+            API uses as documentation Swagger
+            API can request; 
+            GET
+            POST
+            PUT
+            PATCH
+            Delete
+            API uses status Codes for notifying the users
+            Authentication vs Authorization
+            General access     Specific access
+            endpoint:
+            https://jsonplaceholder.typicode.com/todos
+            https://jsonplaceholder.typicode.com/todos/111
+            https://jsonplaceholder.typicode.com/todos?id=111
+            Postman is a manual API mmanipulation tool.
+            Rest Assured library for API automation.
+            //Send a Get request and get 200  records
+            endpoint : https://jsonplaceholder.typicode.com/todos
+                user info
+                
+                https://jsonplaceholder.typicode.com/todos?title=numquam repellendus a magnam
+                https://jsonplaceholder.typicode.com/todos?title=numquam repellendus a magnam&completed=true
+                medunna url:
+                https://medunna.com/api/appointments
+                medunna authentication : 
+                https://medunna.com/api/authenticate
+                                    {
+                      "password": "ajsdhfash",
+                      "rememberMe": true,
+                      "username": "uhdasjhfjdh"
+                    }
+            bearer token:
+            eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbC5ibGljayIsImF1dGgiOiJST0xFX0FETUlOIiwiZXhwIjoxNjYzNjk5MjA2fQ.dVje_8MB38rJRh8kO2piCFLyXz74nHEkGicxcSgsxDjy9hrHiP3Cnae1YeGUsM-FmbgoHLyoDWGtyqadH4yvlQ
+            https://medunna.com/api/rooms?size=250
+            medunna rooms post request:
+                    {
+         
+          "createdDate": "2022-08-21T19:13:57.366Z",
+          "description": "Tea Room",
+          "price": 5,
+          "roomNumber": 3487284,
+          "roomType": "TWIN",
+          "status": true
+        }
+                        Body
+            Get:        false
+            Post:       true
+            Put:        true
+            Patch:      true
+            Delete:     false
+            Delete request url: https://medunna.com/api/rooms/214206
+            petstore: 
+            https://petstore.swagger.io/v2/pet/2
+            API data manipulations:
+            base url + path params + query params  => Endpoint
+            requests:
+            Get, Post, Put, Delete 
+            Post and Put requires also body
+            Authentication and Authorization
+            When I send request
+            How do I validate my request has been successful?
+            Status codes and Body(output)
+            eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcnZlbC5ibGljayIsImF1dGgiOiJST0xFX0FETUlOIiwiZXhwIjoxNjYxMTk5NDg4fQ.oPMujceJq9EgpzLmSWbNSGUBeStpCjmFIiLXflfCjaoUXd_7QQvQ5WlxUz3ferx-SYI8W1NeAZ9sKiZaoGUtLw
+            eyJhbGcOiJIUzUxMiJ9.eyJzdWIiOiJwYXRpZW50IiwiYXV0aCI6IlJPTEVfUEFUSUVOVCIsImV4cCI6MTY2MTE5OTU2NX0.YwltntuXF14NFXbSWj3in6PBIJMy3Yyj4S7JV4_snLOwNL_JWc9q5tOTqXF_mYALziAI7Kz_0m64Zk--0pXSCg
+            endpoint / url :
+            base url + path params + query params
+            https://medunna.com/api/users
+            https://medunna.com/api/appointments
+            https://medunna.com/api/patients
+            User content
+            {
+                "firstname" : "name",
+                "lastname" : "lastname",
+                "id" : 73643
+            }
+            appointment
+            {
+                "firstname" : "name",
+                "lastname" : "lastname",
+                "id" : 73643,
+                "SSN" :"478567463",
+                "email" : "jfhjda@gmail.com"
+            }
