@@ -1,0 +1,56 @@
+ int oddDays=0;
+int leapYear=0;
+int ordinaryYear=0;
+for(int i=2001; i<year; i++){
+    if(i%4==0)
+        leapYear++;
+    else
+        ordinaryYear++;
+}
+
+oddDays= (leapYear*2) + (ordinaryYear);
+
+for(int i=1; i<month; i++){
+    if(i==1||i==3||i==5||i==7||i==8||i==10||i==12){
+        oddDays+= 31;
+    }else if(i==2){
+        oddDays+=28;
+    }else{
+        oddDays+=30;
+    }
+}
+
+oddDays+= day;
+
+if(month>2 && year%4==0){
+    oddDays++;
+}
+
+int a= oddDays/7;
+a=oddDays-(a*7);
+
+String finalDay="sas";
+switch(a){
+    case 0:
+        finalDay= "SUNDAY";
+        break;
+    case 1:
+        finalDay= "MONDAY";
+        break;
+    case 2:
+        finalDay= "TUESDAY";
+        break;
+    case 3:
+        finalDay= "WEDNESDAY";
+        break;
+    case 4:
+        finalDay= "THURSDAY";
+        break;
+    case 5:
+        finalDay= "FRIDAY";
+        break;
+    case 6:
+        finalDay= "SATURDAY";
+        break;   
+}
+return finalDay;
