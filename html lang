@@ -1,0 +1,26 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+   <link rel="stylesheet" href="style.css">
+   
+  </head>
+  <body>
+    <div class="form">
+      <form action="">
+        <p><label for="name">Name:</label> <input type="text" id="name" /></p>
+        <p>
+          <label for="job">Job Ttile:</label> <input type="text" id="job" />
+        </p>
+        <p>
+          <input type="button" value="Show" onclick="ShowJob()" />
+          <input type="reset" value="Reset" onclick="remove()" />
+        </p>
+      </form>
+      <div id="message"></div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
