@@ -1,0 +1,36 @@
+CREATE TABLE workers
+(
+    id CHAR(5),
+    name VARCHAR2(50),
+    salary NUMBER(5),
+    CONSTRAINT id4_pk PRIMARY KEY(id)
+);
+​
+INSERT INTO workers VALUES(10001, 'Ali Can', 12000);
+INSERT INTO workers VALUES(10002, 'Veli Han', 2000);
+INSERT INTO workers VALUES(10003, 'Mary Star', 7000);
+INSERT INTO workers VALUES(10004, 'Angie Ocean', 8500);
+​
+--1) Select the second highest salary from workers table
+SELECT MAX(salary) AS maximum_salary
+FROM workers
+WHERE salary < (SELECT MAX(salary) FROM workers);
+​
+--2) Select the second lowest salary from workers table
+SELECT MIN(salary) AS minimum_salary
+FROM workers
+WHERE salary > (SELECT MIN(salary) FROM workers);
+​
+--3) Select the third highest salary from workers table
+SELECT MAX(salary) AS third_max_salary
+FROM workers
+WHERE salary < (SELECT MAX(salary) AS maximum_salary
+                FROM workers
+                WHERE salary < (SELECT MAX(salary) FROM workers));
+​
+--4) Select the third lowest salary from workers table
+SELECT MIN(salary) AS third_min_salary
+FROM workers
+WHERE salary > (SELECT MIN(salary) AS minimum_salary
+                FROM workers
+                WHERE salary > (SELECT MIN(salary) FROM workers));
