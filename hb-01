@@ -1,0 +1,96 @@
+package com.hb01.annotations;
+​
+import java.util.Arrays;
+import java.util.List;
+​
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.NativeQuery;
+​
+public class RunnerFetch01 {
+​
+	public static void main(String[] args) {
+​
+		Student01 student=new Student01();
+		
+		Configuration con=new  Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Student01.class);
+		SessionFactory sf=con.buildSessionFactory();
+		Session session= sf.openSession();
+		
+		Transaction tx= session.beginTransaction();
+		
+		//if There is no record such an id, get methods return null
+		//1. way to get/fetch data from the database
+//	    student= session.get(Student01.class, 1005);
+//	    System.out.println(student.toString());
+	    
+	    
+		//2.sql query way to fetch data
+	    //While we are writing sql, we use table name
+//	    String sqlQuery1="SELECT * FROM t_student01";
+////	     NativeQuery nativeQuery=  session.createSQLQuery(sqlQuery1);
+////	     List<Object[]> resultList1=  nativeQuery.getResultList();
+//	    List<Object[]> resultList1=	  session.createSQLQuery(sqlQuery1).getResultList();
+//		
+//	    for (Object[] r : resultList1) {
+//			System.out.println(Arrays.toString(r));
+//		}
+	    
+	    //3.HQL query
+		//while we are writng HQL Query we need to use Class name
+//		String hqlQuery1="from Student01";
+//		List resulList2= session.createQuery(hqlQuery1).getResultList();
+//		
+//		for (Object object : resulList2) {
+//			System.out.println(object);
+//		}
+		
+		
+//		String sqlQuery2="SELECT * FROM t_student01 where student_name='John Coffee'";
+//		List<Object[]> resultList3= session.createSQLQuery(sqlQuery2).getResultList();
+//		
+//		for (Object[] r : resultList3) {
+//			System.out.println(Arrays.toString(r));
+//		}
+		
+		
+//		String hqlQuery2="FROM Student01 where name='John Coffee'";
+//		List resulList4= session.createQuery(hqlQuery2).getResultList();
+//		
+//		for (Object object : resulList4) {
+//			System.out.println(object);
+//		}
+		
+		
+		//if you are sure that the result of the query is unique, you can use uniqueResult
+//		String sqlQuery3="SELECT * FROM t_student01 where student_name='Tony Stark'";
+//		Object[] result= (Object[]) session.createSQLQuery(sqlQuery3).uniqueResult();
+//		System.out.println(Arrays.toString(result));
+		
+		
+//		String hqlQuery3="FROM Student01 where name='Tony Stark'";
+//		Object result2= session.createQuery(hqlQuery3).uniqueResult();
+//	    System.out.println(result2);
+		
+		
+		//if we want to get specific columns, 
+		String hqlQuery4="SELECT s.name FROM Student01 s where s.grade=11";
+		List<Object> resulList5 =session.createQuery(hqlQuery4).getResultList();		
+		
+		for (Object object : resulList5) {
+			System.out.println(object);
+		}
+		
+		
+		//it makes data to write into database, makes data permanent 
+		tx.commit();
+		
+		//we have to call session close to release connection
+		session.close();
+		sf.close();
+		
+	}
+​
+}
