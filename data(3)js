@@ -1,0 +1,37 @@
+//api file where I am making the fake data/api of products
+
+const data = {
+    products: [
+        {
+            id: 1,
+            name: 'Polo T-shirt',
+            price: 20,
+            image: '/pics/pic1.jpg'
+        },
+        {
+            id: 2,
+            name: 'Nike T-shirt',
+            price: 10,
+            image: '/pics/pic2.jpg'
+        },
+        {
+            id: 3,
+            name: 'Addidas T-shirt',
+            price: 50,
+            image: '/pics/pics3.jpg'
+        },
+        {
+            id: 4,
+            name: 'Breakout T-shirt',
+            price: 45,
+            image: '/pics/pic4.jpg'
+        },
+        {
+            id: 5,
+            name: 'T-shirt',
+            price: 30,
+            image: '/pics/pic5.jpg'
+        }
+    ]
+}
+export default data;
