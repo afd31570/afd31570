@@ -1,0 +1,27 @@
+-> Reactjs is a library of JavaScript
+-> library
+-> framework
+=> there are mainly 2 factors that how reactjs makes the website more faster
+     -> there is no pages in reactjs. Instead of pages, we have components. 
+     -> reactjs uses Virtual DOM instead of simple/real DOM
+-> Steps of Reactjs project installation
+    1. install Nodejs (we are installing the nodejs for getting the built-in packages for reactjs)
+    2. install the nodejs built-in npm package by running the following command:
+        npm i -g create-react-app
+   3. install the reactjs project anywhere by running the following command:
+       create-react-app projectName
+       OR
+       npm init react-app projectName
+-> Command of running the reactjs project:
+    npm start
+-> There are 2 types of components in reactjs
+    -> class component (initial release of reactjs - old method)
+    -> functional component (latest method)
+         -> using simple function
+         -> using arrow function
+-> Reactjs mostly supports 3 types of files: js, jsx, ts 
+-> How to use CSS in React components?
+    -> inline CSS
+    -> external CSS
+    -> internal CSS (Styled components)
+     
