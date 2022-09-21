@@ -1,1 +1,2 @@
-Niğde Ömer Halisdemir University Philology 
+Niğde Ömer Halisdemir University Philology (2002) 
+ANADOLU UNIVERSITY REAL ESTATE CONSULTANCY and PROPERTY MANAGEMENT (2022)
