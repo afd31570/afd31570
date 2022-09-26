@@ -1,0 +1,130 @@
+ API: Application Programming Interface
+                it helps the software applications to communicate with each other.
+                When you are a developer, you need to customize your api endpoints
+                API
+                Request       and       Response
+                we need;
+                url / endpoint :  base url + path parameters + query params
+                https://salesforce.com/services/apexrest/users/?contactId=101&name=...
+                What http Request methods do we have in API?
+                Get: read data
+                Post: create data
+                Put: update data
+                Patch : update data partially
+                Delete: delete data
+                Then we can validate everything with status codes and body(data)
+                Status codes
+                200: OK
+                201: Created
+                202: accepted
+                204: No content
+                400: Bad request
+                401: Unauthorized
+                404: Not Found
+                GET, DELETE : The body required => false
+                POST, PUT, PATCH : The body required => true
+                Rest API        vs      Soap API
+                faster                  slower
+                secure                  securer
+                JSON, XML, TEXT, HTML    Only XML
+                Authentication        vs       Authorization
+                General access                 specific access
+                admin user
+                username : admin
+                password : admin123
+                authenticated
+                authorization level: access to all
+                patient user
+                username : patient
+                password : patient123
+                Authenticated = true
+                Authorization level : only their records
+                non existing user
+                username : invalid
+                password : invalid
+                Authenticated => no 
+                Validations:
+                Hemchrest mathcers
+                assertions
+                soft and hard assertions
+                response.then.assertThat().getStatusCode().body("name", equalTo())
+                //Hard assertion : if execution fails at some point, the whole execution will stop / dependent scenarios
+                //Soft assrtion : if any scenario fails, it will keep executing the rest of the scenarios / independent scenarios
+                Market: 
+                Tell me about yourself.
+                - Talk about business part of your title
+                - Touch major tools and technologies you have on your background
+                - Talk about yourself the way you can cover important characteristiques
+                Bank project.
+                I am working as a Java Developer for UI and Backend development of Swift platform where we validate systems working properly for national and international transactions.
+                I am involved in Frontend developmenbt using JavaScript, React, HTML, CSS and Bootstrap and Backend Development using Java, Rest API, Springboot, SQL, JDBC, Hibernate and MongoDb.
+                We use Git and Github as control version tool and Jira for project management.
+                I saw some new technologies on your job description eg: Spring mvc, I really like it that I will be able to sharpen my skills based on your new technologies as well
+                I used to have an amazing team where we did a lot of collaboratoins and I believe we will meet amazing people here as well and I will easily integrate your actual teams
+                -communication skills 6
+                -collaboration skills 5 
+                -learning new things and technologies 3
+                -a good searcher  2
+                -a person who always meets the deadlines
+                -show your interest 1
+                -being positive 4
+                Skills:
+                Python, .Net
+                professional experience:
+                
+                Co-op project: 
+                real work environment: 
+                Rainpark Solutions projects: A staffing company
+                Techpro Education
+                Rainpark Solutions
+                Apple => end client
+                Infosys => Staffing company
+                title: Medunna Health Group, New York City, NY
+                //different reference type        different Object type
+                Map <String,Object> data    =    new HashMap<String,Object> ();
+                //Polymorphisme
+                //Inheritance
+                //Abstraction
+                //API: pojo
+                //encapsulations
+                Relation with others?
+                When you have a conflict with testers, how do you rsolve it?
+                You know we already work in a professional environment and we have specific trainings about work ethics and company policy. We are not choosing to blame any one or any characters, but we always try to find solutions if we get any problems or issues.
+                We just organize meetings between team members and communicate the issues to produce a solution.
+                So nothing is personal! Everybody is here for the same purpose to make contributions to the business.
+                Have you had any problems with your team members in your working life? What did you do as a team leader?
+                In my team, there was a misunderstanding of requirement and somebody else thought that I was responsible for it.
+                But we did communicate the issue in the daily stand up and clarified that one of us was working for it. Actually it was not my responsibility, but I asked my team mate if they would be able to elabore on this story. He said he would not have enough time and then I covered it.
+                story 1 => ibrahim
+                story 2 => selim
+                story 3 => selim
+                Scrum team:
+                Scrum master
+                PO
+                Developers
+                Testers
+                BA
+                sprint: time period
+                2 - 4 weeks durations
+                2
+                3
+                4
+                Grooming session / Refinement meeting: we analyze the requirements
+                ask questions to business; 
+                PO / BA
+                estimation
+                Sprint planning session
+                we can point the user stories to find how much stories we can deliver for this sprint
+                Our actual sprint is just getting started with this meeting.
+                Daily scrum / daily stand-up meetings
+                Everyone in your team takes the time to give their daily updates
+                we also talk about impediments if we have any
+                Sprint review session:
+                1 person from QA team tells and walks through the application and show the business what is done so far!
+                Sprint Retrospective meeting:
+                we jsut do a general evaluation about previous sprint
+                we just talk about;
+                what went well?
+                what could be improved?
+                what we commit to doing next sprint?
+                any impediments you faced?
