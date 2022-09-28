@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+​
+<!DOCTYPE hibernate-configuration PUBLIC
+​
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+​
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+​
+<hibernate-configuration>
+​
+    <session-factory>
+​
+        <property name = "hibernate.connection.driver_class">org.postgresql.Driver</property>
+​
+        <property name="connection.url">jdbc:postgresql://localhost:5432/test_db</property>
+​
+        <property name="connection.username">db_user</property>
+​
+        <property name="connection.password">db_password</property>
+​
+		<!-- The SQL types not same for the all data bases, so that specific database will have specific dialect -->
+​
+        <property name = "hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
+        
+        <!-- create, create-drop, update, validate,none
+         create:when you run the application all schema will be create from the scrath and all data will be lost
+         create-drop: when you run the application all schema will be create, when you stop the application it will drop everything
+         update:when you change the entity, schema will be updated
+         validate: it will validate schema
+         none: it doesnt make anything 
+         -->
+​
+        <property name="hbm2ddl.auto">update</property>
+​
+         <property name="show_sql">true</property> 
+​
+        <property name="format_sql">true</property>
+        
+        <!-- instead of addAnnotatedClass(Student02.class) you can use below configuration -->
+     <!--   <mapping class="com.hb02.embeddable.Student02"/> -->
+    
+​
+    </session-factory>
+​
+</hibernate-configuration>
