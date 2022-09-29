@@ -1,0 +1,14 @@
+import React, { useState } from 'react'
+
+const Hook2 = () => {
+    const [btn, setBtn] = useState(0);
+    return (
+        <div>
+            <button onClick={() => setBtn(btn + 1)}>Click me!</button>
+            <p>You clicked the button {btn} times </p>
+            <p>this number is {btn % 2 == 0 ? 'even' : 'odd'}</p>
+        </div>
+    )
+}
+
+export default Hook2
