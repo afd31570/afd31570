@@ -1,0 +1,13 @@
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        // Set up HTML table formatting for the output
+        out.println("<html><body>");
+        out.println("<h3>Student Details</h3>");
+        out.println("<table border=1><tr>" + "<td><b>id</b></td>" + "<td><b>Name</b></td>"
+                + "<td><b>Grade</b></td></tr>");
+        for (Student student : studentList) {
+        	out.println("<tr>" + "<td>" + student.getId() + "</td>" + "<td>" + student.getName() + "</td>"
+                    + "<td>" + student.getGrade()+ "</td></tr>");
+		}
+        out.println("</body></html>");
