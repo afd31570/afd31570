@@ -1,0 +1,117 @@
+package com.tpe;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.tpe.domain.User;
+import com.tpe.exception.ValidationException;
+import com.tpe.service.UserService;
+
+
+
+/**
+ * Servlet implementation class MyServlet
+ */
+@WebServlet("/Login")
+public class Login extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	private UserService userService;
+	
+	private String initParam;
+	
+	private String contextParamUrl;
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public Login() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void init() throws ServletException {
+		System.out.println("Servlet initializing.....");
+		
+		String param=getServletConfig().getInitParameter("name");
+		System.out.println("Param Value:"+param);
+		initParam=param;
+
+		contextParamUrl= getServletContext().getInitParameter("dburl");
+		
+		
+		userService=new UserService();
+	}
+
+	@Override
+	public void destroy() {
+		System.out.println("Servlet destroying.....");
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		
+		response.getWriter().append("Served at: ").append("InitParam:"+initParam).append(",ContextParamUrl:"+contextParamUrl);
+	
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	
+	
+	public String getField(HttpServletRequest request, String fieldName,boolean required) {
+		String fieldValue= request.getParameter(fieldName);
+		
+		if(fieldValue==null || fieldName.trim().isEmpty()) {
+			if(required) {
+				throw new ValidationException("Field is required");
+			}else {
+				fieldValue=null;
+			}
+		}
+		return fieldValue;
+		
+	} 
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+//		String username = request.getParameter("username");
+//		String password = request.getParameter("password");
+		
+		//extract values
+		
+		//validate values
+		String userName= getField(request, "username", true);
+		String password= getField(request, "password", true);
+		
+		User user=new User();
+		user.setUserName(userName);
+		user.setPassword(password);
+		
+		boolean isLoggedIn= userService.login(user);
+		
+		if(!isLoggedIn) {
+			response.sendRedirect("loginerror.html");
+		}else {
+			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/liststudent");
+			dispatcher.forward(request, response);
+		}
+
+	}
+
+}
