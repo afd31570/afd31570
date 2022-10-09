@@ -1,0 +1,13 @@
+@PutMapping("/{id}")
+	public ResponseEntity<Map<String, String>> updateStudent(@PathVariable Long id,@Valid @RequestBody StudentDTO studentDTO){
+		 Student foundStudent= studentService.findStudentById(id);
+		 foundStudent.setFirstName(studentDTO.getFirstName());
+		 foundStudent.setLastName(studentDTO.getLastName());
+		 foundStudent.setGrade(studentDTO.getGrade());
+		 foundStudent.setPhoneNumber(studentDTO.getPhoneNumber());
+		studentService.updateStudent(foundStudent);
+		Map<String, String> map = new HashMap<>();
+		map.put("message", "Student updated successfully");
+		map.put("success", "true");
+		return ResponseEntity.ok(map);
+	}
