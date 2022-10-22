@@ -1,0 +1,46 @@
+db.createCollection('posts',{
+    validator:{
+        $jsonSchema:{
+            bsonType:'object',
+            title:'You can publish your posts safely here',
+            required:['title','text','creator','comments'],
+            properties:{
+                title:{
+                    bsonType:'string',
+                    description:'required string'
+                },
+                text:{
+                    bsonType:'string',
+                    description:'required string'
+                },
+                creator:{
+                    bsonType:'objectId',
+                    description: 'required ObjectID'
+                },
+                comments:{
+                    bsonType:'array',
+                    description:'required array',
+                    items:{
+                        bsonType:'object',
+                        required:['text','author'],
+                        properties:{
+                          text:{
+                            bsonType:'string'
+                           
+                          },
+                          author:{
+                            bsonType:'objectId'
+                          }  
+                        }
+                    }
+                },
+                tags:{
+                    bsonType:'array',
+                    items:{
+                        bsonType:'string'
+                    }
+                }
+            }
+        }
+    }
+})
