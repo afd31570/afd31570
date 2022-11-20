@@ -1,0 +1,40 @@
+package mentoringPractices;
+​
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+​
+        public class PasswordRegex {
+​
+            public static void main(String[] args) {
+                Scanner input=new Scanner(System.in);
+​
+                System.out.println("Enter the password");
+                String password=input.nextLine();
+                System.out.println(isValidPassword(password));
+​
+        System.out.println("Enter your email:");
+        String email=input.nextLine();
+        System.out.println(isvalidEmail(email));
+    }
+    public static boolean isValidPassword(String password) {
+        String regex = "^(?=.*[0-9])"
+                + "(?=.*[a-z])(?=.*[A-Z])"
+                + "(?=.*[@#$%^&+=])"
+                + "(?=\\S+$).{8}$";
+        Pattern p = Pattern.compile(regex);
+        if (password == null) {
+            return false; }
+        Matcher m = p.matcher(password);
+        return m.matches();
+    }
+    public static boolean isvalidEmail(String email){
+        String regexMail= "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        Pattern p = Pattern.compile(regexMail);
+        if (email == null) {
+            return false; }
+        Matcher m = p.matcher(email);
+        return m.matches();
+    }
+}
