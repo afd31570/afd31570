@@ -1,0 +1,39 @@
+paket  yenilikleri ;
+
+ io'yu içe aktar github . bonigarcia _ . _ Web Sürücü Yöneticisi ;
+ithalat  org . açık . selenyum _ Web Sürücüsü ;
+ithalat  org . açık . selenyum _ Pencere Tipi ;
+ithalat  org . açık . selenyum _ krom _ ChromeSürücü ;
+ithalat  org . test _ ek açıklamalar . testi ;
+
+  genel  sınıf  C02_NewWindow {
+    Web Sürücüsü  sürücüsü ;
+    @ testi
+    genel  geçersiz  test01 () , InterruptedException { atar 
+
+        WebDriverManager . krom sürücüsü (). kurulum ();
+        sürücü = yeni  ChromeDriver ();
+
+        sürücü _ alın ( "https://www.amazon.com" );
+        İplik . uyku ( 3000 );
+
+        String  ilkSayfaHandleDegeri = sürücü . getWindowHandle ();
+
+        sürücü _ geçiş (). yeni Pencere ( Pencere Türü . TAB ). alın ( "https://www.facebook.com" );
+
+        İplik . uyku ( 3000 );
+
+        sürücü _ geçiş (). pencere ( ilkSayfaHandleDegeri );
+        İplik . uyku ( 3000 );
+
+
+        sürücü _ geçiş (). yeni Pencere ( WindowType . WINDOW ). alın ( "https://www.instagram.com" );
+        İplik . uyku ( 3000 );
+
+        sürücü _ geçiş (). pencere ( ilkSayfaHandleDegeri );
+        İplik . uyku ( 3000 );
+
+        sürücü _ çık ();
+
+    }
+}
