@@ -1,0 +1,21 @@
+<! DOCTYPE  paketi SİSTEMİ "https://testng.org/testng-1.0.dtd" >
+< süit  adı = " çapraz tarayıcı "  paralel = " testler "  thread-count = " 3 "  ayrıntılı = " 3 " >
+    < test  adı = " tarayıcılar arası krom " >
+        < parametre  adı = " tarayıcı "  değeri = " firefox " ></ parametre >
+        < sınıflar >
+            < sınıf  adı = " crossBrowser.positiveLogintest " ></ sınıf >
+        </ sınıflar >
+    </ testi >
+    < test  adı = " tarayıcılar arası firefox " >
+        < parametre  adı = " tarayıcı "  değeri = " opera " ></ parametre >
+        < sınıflar >
+            < sınıf  adı = " crossBrowser.positiveLogintest " ></ sınıf >
+        </ sınıflar >
+    </ testi >
+    < test  adı = " çapraz tarayıcı operası " >
+        < parametre  adı = " tarayıcı "  değeri = " krom " ></ parametre >
+        < sınıflar >
+            < sınıf  adı = " crossBrowser.positiveLogintest " ></ sınıf >
+        </ sınıflar >
+    </ testi >
+</ süit >
