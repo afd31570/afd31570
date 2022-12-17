@@ -1,0 +1,16 @@
+package com.generics.example;
+
+import com.genercs.example.Dbwork;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // making an object of Dbwork class
+        Dbwork db = new Dbwork();
+        // calling the database connection function
+
+    }
+}
