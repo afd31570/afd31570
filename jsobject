@@ -1,0 +1,33 @@
+@Deprecated(since = "9")
+    @SuppressWarnings("exports")
+    public static JSObject getWindow(Applet applet) throws JSException {
+        return ProviderLoader.callGetWindow(applet);
+    }
+
+    private static class ProviderLoader {
+        private static final JSObjectProvider provider;
+
+        static {
+            provider = AccessController.doPrivileged(
+                new PrivilegedAction<>() {
+                    @Override
+                    public JSObjectProvider run() {
+                        Iterator<JSObjectProvider> providers =
+                            ServiceLoader.loadInstalled(JSObjectProvider.class).iterator();
+                        if (providers.hasNext()) {
+                            return providers.next();
+                        }
+                        return null;
+                    }
+                }
+            );
+        }
+
+        private static JSObject callGetWindow(Applet applet) {
+            if (provider != null) {
+                return provider.getWindow(applet);
+            }
+            return null;
+        }
+    }
+}
