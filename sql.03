@@ -1,0 +1,369 @@
+CREATE TABLE workers
+(
+    id CHAR(5),
+    name VARCHAR2(50),
+    salary NUMBER(5),
+    CONSTRAINT id4_pk PRIMARY KEY(id)
+);
+​
+INSERT INTO workers VALUES(10001, 'Ali Can', 12000);
+INSERT INTO workers VALUES(10002, 'Veli Han', 2000);
+INSERT INTO workers VALUES(10003, 'Mary Star', 7000);
+INSERT INTO workers VALUES(10004, 'Angie Ocean', 8500);
+​
+--1) Select the second highest salary from workers table
+SELECT MAX(salary) AS maximum_salary
+FROM workers
+WHERE salary < (SELECT MAX(salary) FROM workers);
+​
+--2) Select the second lowest salary from workers table
+SELECT MIN(salary) AS minimum_salary
+FROM workers
+WHERE salary > (SELECT MIN(salary) FROM workers);
+​
+--3) Select the third highest salary from workers table
+SELECT MAX(salary) AS third_max_salary
+FROM workers
+WHERE salary < (SELECT MAX(salary) AS maximum_salary
+                FROM workers
+                WHERE salary < (SELECT MAX(salary) FROM workers));
+​
+--4) Select the third lowest salary from workers table
+SELECT MIN(salary) AS third_min_salary
+FROM workers
+WHERE salary > (SELECT MIN(salary) AS minimum_salary
+                FROM workers
+                WHERE salary > (SELECT MIN(salary) FROM workers));
+                
+SELECT * FROM workers;
+​
+--5) Interview Question: Select all data about the worker whose salary is the second highest
+--1.Way:
+SELECT *
+FROM workers
+WHERE salary = (SELECT MAX(salary) AS second_maximum_salary
+                FROM workers
+                WHERE salary < (SELECT MAX(salary) 
+                                FROM workers));
+--2.Way:
+SELECT *
+FROM workers
+ORDER BY salary DESC
+OFFSET 1 ROW
+FETCH NEXT 2 ROW ONLY;
+                
+                          
+--6) Interview Question: Select all data about the worker whose salary is the second lowest 
+--1.Way: This works for all SQLs
+SELECT *
+FROM workers
+WHERE salary = (SELECT MIN(salary) AS second_minimum_salary
+                FROM workers
+                WHERE salary > (SELECT MIN(salary) 
+                                FROM workers));
+​
+--2.Way:This work for just PL/SQL
+SELECT *
+FROM workers
+ORDER BY salary ASC
+OFFSET 1 ROW
+FETCH NEXT 1 ROW ONLY;
+​
+--7) Challenge: Select all data whose salary is the third highest salary from workers table
+--1.Way:
+SELECT * 
+FROM workers
+WHERE salary = (SELECT MAX(salary) AS third_max_salary
+                FROM workers
+                WHERE salary < (SELECT MAX(salary) AS maximum_salary
+                                FROM workers
+                                WHERE salary < (SELECT MAX(salary) 
+                                                FROM workers)));
+--2.Way:
+SELECT *
+FROM workers
+ORDER BY salary DESC
+OFFSET 2 ROW
+FETCH NEXT 1 ROW ONLY;
+​
+CREATE TABLE customers_products
+( 
+  product_id number(10),
+  customer_name varchar2(50),
+  product_name varchar2(50)
+);
+ 
+INSERT INTO customers_products VALUES (10, 'Mark', 'Orange');
+INSERT INTO customers_products VALUES (10, 'Mark', 'Orange');
+INSERT INTO customers_products VALUES (20, 'John', 'Apple');
+INSERT INTO customers_products VALUES (30, 'Amy', 'Palm');
+INSERT INTO customers_products VALUES (20, 'Mark', 'Apple');
+INSERT INTO customers_products VALUES (10, 'Adem', 'Orange');
+INSERT INTO customers_products VALUES (40, 'John', 'Apricot');
+INSERT INTO customers_products VALUES (20, 'Eddie', 'Apple');               
+                
+SELECT * FROM customers_products;               
+​
+--IN Condition: Instead of multiple OR we use IN
+​
+--8) Select records whose product name is Orange or Apple or Palm
+--1.Way: Not recommended because of the repetition
+SELECT *
+FROM customers_products
+WHERE product_name = 'Orange' OR product_name = 'Apple' OR product_name = 'Palm';
+​
+--2.Way:
+SELECT *
+FROM customers_products
+WHERE product_name IN('Orange', 'Apple', 'Palm');
+​
+--NOT IN Condition 
+--9) Select records whose product name is not Orange or Apple or Palm
+SELECT *
+FROM customers_products
+WHERE product_name NOT IN('Orange', 'Apple', 'Palm');
+​
+​
+-- BETWEEN Condition
+​
+--10) Select records whose product id is less than or equal to 30 and greater than or equal to 20
+--1.Way: Not recommended because of the repetition
+SELECT * 
+FROM customers_products
+WHERE product_id <= 30 AND product_id >= 20;
+​
+--2.Way:
+SELECT * 
+FROM customers_products
+WHERE product_id BETWEEN 20 AND 30; -- 20 and 30 are inclusive
+​
+--NOT BETWEEN Condition
+​
+--11) Select records whose product id is less than 20, greater than 25
+--1.Way:
+SELECT *
+FROM customers_products
+WHERE product_id < 20 OR product_id > 25;
+​
+--2.Way:
+SELECT *
+FROM customers_products
+WHERE product_id NOT BETWEEN 20 AND 25; --In NOT BETWEEN 20 and 25 are exclusive
+​
+--EXISTS Condition: EXISTS condition is used with Subquery.
+--                  If the Subquery returns any record Outer Query will be executed
+--                  If the Subquery does not return any record Outer Query will not be executed 
+--                  EXISTS can be used in SELECT, INSERT, UPDATE, and DELETE commands
+​
+CREATE TABLE customers_likes
+( 
+  product_id number(10),
+  customer_name varchar2(50),
+  liked_product varchar2(50)
+);
+​
+​
+INSERT INTO customers_likes VALUES (10, 'Mark', 'Orange');
+INSERT INTO customers_likes VALUES (50, 'Mark', 'Pineapple');
+INSERT INTO customers_likes VALUES (60, 'John', 'Avocado');
+INSERT INTO customers_likes VALUES (30, 'Lary', 'Cherries');
+INSERT INTO customers_likes VALUES (20, 'Mark', 'Apple');
+INSERT INTO customers_likes VALUES (10, 'Adem', 'Orange');
+INSERT INTO customers_likes VALUES (40, 'John', 'Apricot');
+INSERT INTO customers_likes VALUES (20, 'Eddie', 'Apple');
+​
+SELECT * FROM customers_likes;
+​
+--12) Update names to "No name" if there is Lary among names in customers_likes table
+UPDATE customers_likes
+SET customer_name = 'No name'
+WHERE EXISTS (SELECT customer_name FROM customers_likes WHERE customer_name = 'Lary');
+​
+--13) Update names to "No name" if there is any liked product whose name is Orange or Pineapple or Avocado in customers_likes table
+UPDATE customers_likes
+SET customer_name = 'No name'
+WHERE EXISTS (SELECT customer_name FROM customers_likes WHERE liked_product IN ('Orange','Pineapple','Avocado'));
+​
+UPDATE customers_likes
+SET customer_name = 'No name'
+WHERE liked_product IN ('Orange','Pineapple','Avocado');
+​
+--13) Delete records if there is 'Orange' as product_name in customers_likes table
+DELETE FROM customers_likes
+WHERE EXISTS (SELECT liked_product FROM customers_likes WHERE liked_product = 'Orange');
+​
+--14) Select customer names if the product ids are same in customers_products and customers_likes tables.
+SELECT product_id, customer_name
+FROM customers_products
+WHERE EXISTS (SELECT product_id FROM customers_likes WHERE customers_products.product_id = customers_likes.product_id);
+​
+--SUBQUERY
+CREATE TABLE employees 
+(  
+  id number(9), 
+  name varchar2(50), 
+  state varchar2(50), 
+  salary number(20),
+  company varchar2(20)
+);
+​
+INSERT INTO employees VALUES(123456789, 'John Walker', 'Florida', 2500, 'IBM');
+INSERT INTO employees VALUES(234567890, 'Brad Pitt', 'Florida', 1500, 'APPLE');
+INSERT INTO employees VALUES(345678901, 'Eddie Murphy', 'Texas', 3000, 'IBM');
+INSERT INTO employees VALUES(456789012, 'Eddie Murphy', 'Virginia', 1000, 'GOOGLE');
+INSERT INTO employees VALUES(567890123, 'Eddie Murphy', 'Texas', 7000, 'MICROSOFT');
+INSERT INTO employees VALUES(456789012, 'Brad Pitt', 'Texas', 1500, 'GOOGLE');
+INSERT INTO employees VALUES(123456710, 'Mark Stone', 'Pennsylvania', 2500, 'IBM');
+​
+SELECT * FROM employees;
+​
+CREATE TABLE companies 
+(  
+  company_id number(9), 
+  company varchar2(20),
+  number_of_employees number(20)
+);
+​
+INSERT INTO companies VALUES(100, 'IBM', 12000);
+INSERT INTO companies VALUES(101, 'GOOGLE', 18000);
+INSERT INTO companies VALUES(102, 'MICROSOFT', 10000);
+INSERT INTO companies VALUES(103, 'APPLE', 21000);
+​
+SELECT * FROM companies;
+​
+--15)Find the employee and company names whose company has more than 15000 employees
+SELECT name, company
+FROM employees
+WHERE company IN (SELECT company FROM companies WHERE companies.number_of_employees > 15000); 
+​
+--16)Find the company ids and company names which are in Florida
+SELECT company_id, company
+FROM companies
+WHERE company IN (SELECT company FROM employees WHERE employees.state = 'Florida');
+​
+--17)Find the employee name and state which has companies whose company ids are greater than 100
+SELECT name, state
+FROM employees
+WHERE company IN (SELECT company FROM companies WHERE companies.company_id > 100);
+​
+--18)Find the company name, number of employees and average salary for every company
+SELECT company, number_of_employees, (SELECT AVG(salary) 
+                                      FROM employees 
+                                      WHERE companies.company = employees.company) 
+                                      AS avg_salary_per_company
+FROM companies;
+​
+--19)Find the name of the companies, company ids, maximum and minimum salaries per company.
+SELECT company_id, company, (SELECT MAX(salary) FROM employees WHERE companies.company = employees.company) AS max_salary, 
+                            (SELECT MIN(salary) FROM employees WHERE companies.company = employees.company) AS min_salary
+FROM companies;
+​
+--20)Get the number of employees whose company id is 100 or 101
+-- Later
+​
+--LIKE Condition: It is used with WildCard
+--1) % Wildcard: It represents zero or more characters
+--21)Select employee names which start with 'E'
+SELECT name
+FROM employees
+WHERE name LIKE 'E%';
+​
+--22)Select employee names which end with 'e'
+SELECT name
+FROM employees
+WHERE name LIKE '%e';
+​
+--23)Select employee names which start with B, end with 't'
+SELECT name
+FROM employees
+WHERE name LIKE 'B%t';
+​
+--24)Select employee names which has 'a' in any position
+SELECT name
+FROM employees
+WHERE name LIKE '%a%';
+​
+--25)Select employee names which has 'e' and 'r' in any position
+SELECT name
+FROM employees
+WHERE name LIKE '%e%r%' OR name LIKE '%r%e%';
+​
+--2) _ Wildcard: It represents a single character
+--26)Select state whose second character is 'e' and forth character is 'n'
+SELECT state 
+FROM employees
+WHERE state LIKE '_e_n%';
+​
+--27)Select state whose last second character is 'i'
+SELECT state 
+FROM employees
+WHERE state LIKE '%i_';
+​
+--28)Select states whose second character is 'e' and it has at least 6 characters
+SELECT state 
+FROM employees
+WHERE state LIKE '_e____%';
+​
+--29)Select states which has 'i' in any position after second character
+SELECT state 
+FROM employees
+WHERE state LIKE '__%i%';
+​
+--NOT LIKE Condition
+​
+--30)Select words which do not have 'h' in any position
+SELECT word
+FROM words
+WHERE word NOT LIKE '%h%';
+​
+--31)Select words which do not end with 't' and do not end 'f'
+SELECT word
+FROM words
+WHERE word NOT LIKE '%t' AND word NOT LIKE '%f';--be careful about using AND, it is because of the logic rules
+​
+--32)Select words which start with any character, not followed by 'a', not followed by 'e'
+SELECT word
+FROM words
+WHERE word NOT LIKE '_a%' AND word NOT LIKE '_e%';
+​
+--REGEXP_LIKE Condition: You can use Regular Expressions with REGEXP_LIKE Condition
+CREATE TABLE words
+( 
+  word_id number(10) UNIQUE,
+  word varchar2(50) NOT NULL,
+  number_of_letters number(6)
+);
+​
+INSERT INTO words VALUES (1001, 'hot', 3);
+INSERT INTO words VALUES (1002, 'hat', 3);
+INSERT INTO words VALUES (1003, 'hit', 3);
+INSERT INTO words VALUES (1004, 'hbt', 3);
+INSERT INTO words VALUES (1008, 'hct', 3);
+INSERT INTO words VALUES (1005, 'adem', 4);
+INSERT INTO words VALUES (1006, 'selena', 6);
+INSERT INTO words VALUES (1007, 'yusuf', 5);
+​
+SELECT * FROM words;
+​
+--33)Select words whose first character is 'h', last character is 't' and second character is 'o', or 'a' or 'i'
+--1.Way:By using LIKE, not recommended because there is repetition
+SELECT word
+FROM words
+WHERE word LIKE 'ho%t' OR word LIKE 'ha%t' OR word LIKE 'hi%t';
+​
+--2.Way: By using REGEXP_LIKE
+SELECT word
+FROM words
+WHERE REGEXP_LIKE(word, 'h[oai](.*)t');--First parameter is the column name. (.*) means zero or more characters like % in wild cards
+​
+--34)Select words whose first character is 'h', last character is 't' and second character is from 'a' to 'e'
+SELECT word
+FROM words
+WHERE REGEXP_LIKE(word, 'h[a-e](.*)t');--[a-e] means a,b,c,d,e
+​
+--35)Select words whose first character is 's' or 'a' or 'y'
+SELECT word
+FROM words
+WHERE REGEXP_LIKE(word, '^[say](.*)');--(.*) is optional to use
+​
+--36)Select words whose last character is 'm' or 'a' or...
