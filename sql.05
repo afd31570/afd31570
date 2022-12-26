@@ -1,0 +1,141 @@
+CREATE TABLE my_companies 
+(  
+  company_id number(9), 
+  company_name varchar2(20)
+);
+​
+INSERT INTO my_companies VALUES(100, 'IBM');
+INSERT INTO my_companies VALUES(101, 'GOOGLE');
+INSERT INTO my_companies VALUES(102, 'MICROSOFT');
+INSERT INTO my_companies VALUES(103, 'APPLE');
+​
+SELECT * FROM my_companies;
+​
+CREATE TABLE orders 
+(  
+  order_id number(9),
+  company_id number(9), 
+  order_date date
+);
+​
+INSERT INTO orders VALUES(11, 101, '17-Apr-2020');
+INSERT INTO orders VALUES(22, 102, '18-Apr-2020');
+INSERT INTO orders VALUES(33, 103, '19-Apr-2020');
+INSERT INTO orders VALUES(44, 104, '20-Apr-2020');
+INSERT INTO orders VALUES(55, 105, '21-Apr-2020');
+​
+SELECT * FROM orders;
+​
+--LEFT JOIN:
+--Get order id and order date for the companies in my_companies table
+SELECT mc.company_name, o.order_id, o.order_date
+FROM my_companies mc LEFT JOIN orders o
+ON o.company_id = mc.company_id
+ORDER BY o.order_date;
+​
+--RIGHT JOIN
+--Get order id and order date for the companies in orders table
+--1.Way:
+SELECT mc.company_name, o.order_id, o.order_date
+FROM my_companies mc RIGHT JOIN orders o
+ON o.company_id = mc.company_id
+ORDER BY o.order_date;
+​
+--2.Way:
+SELECT mc.company_name, o.order_id, o.order_date
+FROM orders o LEFT JOIN my_companies mc
+ON o.company_id = mc.company_id
+ORDER BY o.order_date;
+​
+--FULL JOIN
+--Get order id and order date from both of the tables
+--Note: In FULL JOIN you can switch the table names, it does not affect the output
+SELECT mc.company_name, o.order_id, o.order_date
+FROM orders o FULL JOIN my_companies mc
+ON o.company_id = mc.company_id
+ORDER BY o.order_date;
+​
+--SELF JOIN
+CREATE TABLE workers 
+(  
+  id number(2), 
+  name varchar2(20),
+  title varchar2(60),
+  manager_id number(2) 
+);
+​
+INSERT INTO workers VALUES(1, 'Ali Can', 'SDET', 2);
+INSERT INTO workers VALUES(2, 'John Walker', 'QA', 3);
+INSERT INTO workers VALUES(3, 'Angie Star', 'QA Lead', 4);
+INSERT INTO workers VALUES(4, 'Amy Sky', 'CEO', 5);
+​
+--Create a table which displays the manager of employees
+SELECT employee.name, manager.name
+FROM workers employee INNER JOIN workers manager -- INNER JOIN = JOIN
+ON employee.manager_id = manager.id;
+​
+--ALTER TABLE
+--1) We can add a column to an existing table
+ALTER TABLE workers 
+ADD company_industry VARCHAR2(20);
+​
+--2) How to add a field with default value
+ALTER TABLE workers
+ADD worker_address VARCHAR2(80) DEFAULT 'Miami, FL, USA';
+​
+--3) How to add multiple fields into a table
+ALTER TABLE workers
+ADD (number_of_workers NUMBER(5) DEFAULT 0, 
+     name_of_ceo VARCHAR2(20));
+​
+--4)How to drop fields from a table
+ALTER TABLE workers
+DROP COLUMN name_of_ceo;
+​
+--5)How to rename a field/column
+ALTER TABLE workers
+RENAME COLUMN company_industry TO company_profession;
+​
+​
+--6)How to rename table
+ALTER TABLE workers
+RENAME TO employees;
+​
+--7)How to modify(Add constraints, change data type, change the size) a field
+​
+--Note:1)When you add a constarint into a field be careful about existing data
+​
+--a)How to add constraint
+--a1)Add "NOT NULL" constraint to number_of_workers field
+ALTER TABLE employees
+MODIFY number_of_workers NUMBER(5) NOT NULL;
+​
+--a2)Add "UNIQUE" constraint to company_profession field
+ALTER TABLE employees
+MODIFY company_profession VARCHAR2(20) UNIQUE;--UNIQUE accepts repeated null data
+​
+--a3)Add "UNIQUE" constraint to worker_address field
+ALTER TABLE employees
+MODIFY worker_address VARCHAR2(20) UNIQUE;--cannot validate duplicate keys found
+​
+--b)How to change data size of a field
+--b1)Change the data type of the company_profession field to CHAR(5)
+ALTER TABLE employees
+MODIFY company_profession CHAR(5);
+​
+--Note:2)When you modify a field, new size must be greater than or equal to the maximum existing size
+​
+--b2)Change the data type of the worker_address field to CHAR(5)
+ALTER TABLE employees
+MODIFY worker_address CHAR(5);--Cannot decrease column length because some value is too big
+​
+--b3)Change the data type of the worker_address field to CHAR(30)
+ALTER TABLE employees
+MODIFY worker_address CHAR(30);
+​
+--c)How to change data type of a field
+--c1)Change the data type of number_of_workers to CHAR(5)
+ALTER TABLE employees
+MODIFY number_of_workers CHAR(5);--Column to be modified must be empty to change datatype
+​
+SELECT * FROM employees;
