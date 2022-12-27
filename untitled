@@ -1,0 +1,52 @@
+import java.util.Scanner;
+​
+public class AsalCarpan02 {
+    static int bolen = 1;
+    static boolean isAsal = false;
+​
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Bir sayi giriniz: ");
+        int sayi = scanner.nextInt();
+        bolenSayilar(sayi);
+        asalCarpan(sayi);
+​
+    }
+​
+    public static void bolenSayilar(int sayi) {
+        String bolenler= "";
+​
+        for (int i =2 ; i<=sayi;i++) {
+            if (sayi % i == 0) {
+                bolenler += i + " ";
+            }
+        }
+        System.out.println("Bir haric bolen sayilar: " + bolenler);
+    }
+​
+    private static void asalCarpan(int sayi) {
+        int asalBolen = 2;
+        for (int i = 2; i < sayi; i++) {
+​
+            if (sayi % i == 0) {
+                bolen = i;
+                if (asalMi(bolen)){
+                    asalBolen = bolen;
+                }
+            }
+        }
+        System.out.println("En buyuk asal bolen: " + asalBolen);
+    }
+​
+    private static boolean asalMi(int bolen) {
+        for (int i = 2; i < bolen; i++) {
+            if (bolen % i != 0) {
+                isAsal = true;
+            } else isAsal = false;
+                break;
+​
+​
+        }
+        return isAsal;
+    }
+}
