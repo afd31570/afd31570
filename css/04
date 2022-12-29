@@ -1,0 +1,16 @@
+body {
+    background-color: aquamarine;
+  }
+  .form {
+    margin: 20%;
+    border: 3px solid black;
+    text-align: center;
+    background-color: bisque;
+    
+  }
+  #messge {
+    font-size: larger;
+    font-weight: bolder;
+    background-color: crimson;
+    text-transform: uppercase;
+  }
