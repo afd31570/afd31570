@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "507ece9f-fbeb-413d-91b1-748dc443df79",
+		"name": "A_VisionRent",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "contactmessage",
+			"item": [
+				{
+					"name": "saveContactMessage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Bekir\",\r\n    \"email\":\"bekir@email.com\",\r\n    \"subject\":\"What is up\",\r\n    \"body\":\"My Name is John, Thank you for everything\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/contactmessage/visitors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contactmessage",
+								"visitors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getAllWithPage",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getWithPath",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getWithRequestParam",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "updateContactMessage",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "deleteContactMessage",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "userjwt",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
