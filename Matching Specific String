@@ -1,0 +1,21 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}Scanner sc = new Scanner(System.in);
+        Pattern  p = Pattern.compile("hackerrank");
+        int count=0;
+        while(sc.hasNext())
+        {
+            Matcher m = p.matcher(sc.next().trim());
+            if(m.find()) count++;
+        }
+        System.out.println("Number of matches : "+count);
+        sc.close();
