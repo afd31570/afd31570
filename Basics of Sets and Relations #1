@@ -1,0 +1,7 @@
+Question You are given two sets. Set A = {1,2,3,4,5,6} Set B = {2,3,4,5,6,7,8}
+
+How many elements are present in ?
+
+Answer: 8
+
+Explanation: They are asking the count of A U B, Elements of A U B={1,2,3,4,5,6,7,8} Count of A U B= 8.
