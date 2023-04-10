@@ -1,0 +1,8 @@
+/*
+with cte(x,y,diff,sum) as (select *, (x-y) as diff, (x+y) as sum from functions),
+cte2(x,y,diff,sum,rn) as (select *, row_number() over(partition by square(diff), sum order by x desc) as rn from cte)
+
+select x,y from cte2 where rn=2 order by x;
+
+Please append a semicolon ";" at the end of the query and enter your query in a single line to avoid error.
+*/
