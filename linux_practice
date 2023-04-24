@@ -1,0 +1,12 @@
+echo HELLO
+
+echo: echo [-neE] [arg ...]
+    Write arguments to the standard output.
+
+    Display the ARGs, separated by a single space character and followed by a
+    newline, on the standard output.
+
+    Options:
+      -n    do not append a newline
+      -e    enable interpretation of the following backslash escapes
+      -E    explicitly suppress interpretation of backslash
