@@ -1,0 +1,5 @@
+read num
+
+reslt=$(bc -l <(echo $num))
+
+printf "%.3f" $reslt
