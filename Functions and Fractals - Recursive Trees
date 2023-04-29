@@ -1,0 +1,36 @@
+COL_MAX=100
+declare -a cel;
+read N_MAX
+
+function buildTree() {
+  local curr="$1"
+  local rootRow="$2"
+  local rootCol="$3"
+  local len=$((2 ** (5-curr)))
+  local lenLeaf=$len
+  for ((id=0; id < $len; ++id)); do
+    cel[$COL_MAX*($rootRow+id)+$rootCol]=1;
+  done
+  local leafRootRow=$((rootRow+len))
+  for ((id=0; id < $lenLeaf; ++id)); do
+    cel[$COL_MAX*($leafRootRow+id)+$rootCol-$id-1]=1;
+    cel[$COL_MAX*($leafRootRow+id)+$rootCol+$id+1]=1;
+  done
+  if (( curr < $N_MAX )); then
+    buildTree $curr+1 $leafRootRow+$lenLeaf $rootCol-$lenLeaf
+    buildTree $curr+1 $leafRootRow+$lenLeaf $rootCol+$lenLeaf
+  fi
+}
+
+buildTree 1 0 49
+for ((row=62; row > -1; --row));
+do
+  for ((col=0; col < $COL_MAX; ++col)); do
+    if (( cel[$COL_MAX*$row + $col] == 1 )); then
+      echo -n "1"
+    else
+      echo -n "_"
+    fi
+  done
+  echo ""
+done
