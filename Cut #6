@@ -1,0 +1,4 @@
+#!/bin/bash
+while read LINES; do
+echo $LINES | cut -c 13-100;
+done
