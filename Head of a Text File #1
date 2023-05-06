@@ -1,0 +1,6 @@
+#!/bin/bash
+while read FILE;
+do
+echo $FILE >> file.txt
+done
+head -n20 < file.txt
