@@ -1,0 +1,8 @@
+read numbers
+
+for (( i=1; i<=$numbers; i++)) do
+    read num
+    sum=$(($sum+$num))
+done
+
+printf "%.3f" $(echo "$sum/$numbers" | bc -l)
