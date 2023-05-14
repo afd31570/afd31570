@@ -1,0 +1,15 @@
+read X
+read Y
+read Z
+
+nchars=$(echo -e "$X\n$Y\n$Z" | uniq -c | wc -l)
+
+if [[ $nchars -eq 1 ]]
+then
+	echo "EQUILATERAL"
+elif [[ $nchars -eq 2 ]]
+then
+	echo "ISOSCELES"
+else	
+	echo "SCALENE"
+fi;
