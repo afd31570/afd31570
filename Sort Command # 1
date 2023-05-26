@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sort $1
+#!/usr/bin/env bash
+
+sort
