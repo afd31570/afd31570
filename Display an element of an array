@@ -1,0 +1,11 @@
+#!/bin/bash
+
+while read line
+do
+    arr+=($line)
+done
+
+for x in ${#arr[@]}
+do
+    echo ${arr[3]}
+done
