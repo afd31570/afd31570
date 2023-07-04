@@ -1,0 +1,5 @@
+arry=( $(cat) )
+
+arry=( ${arry[@]/#[A-Z]/.} )
+
+echo "${arry[@]%$'\n'}"
