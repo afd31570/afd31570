@@ -1,0 +1,8 @@
+read n
+read -ra arr
+result=0
+for i in "${arr[@]}"
+do
+    result=$((result ^ i))
+done
+echo $result
